@@ -16,9 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-import account
+# import account
+from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('account/', include('account.urls'))
+    path('account/', include('account.urls')),
+    path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
+    path('', TemplateView.as_view(template_name='static_home.html')),
 ]
